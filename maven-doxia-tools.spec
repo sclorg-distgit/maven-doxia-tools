@@ -4,7 +4,7 @@
 
 Name:		%{?scl_prefix}%{pkg_name}
 Version:	1.4
-Release:	14.11%{?dist}
+Release:	14.12%{?dist}
 Summary:	Maven Doxia Integration Tools
 
 License:	ASL 2.0
@@ -13,18 +13,18 @@ Source0:	http://repo1.maven.org/maven2/org/apache/maven/shared/%{pkg_name}/%{ver
 
 BuildRequires:	%{?scl_prefix_java_common}apache-commons-io >= 1.4
 BuildRequires:	%{?scl_prefix_java_common}apache-commons-logging
-BuildRequires:	maven30-plexus-utils
-BuildRequires:	maven30-plexus-interpolation
-BuildRequires:	maven30-plexus-containers-container-default
-BuildRequires:	maven30-plexus-i18n
+BuildRequires:	%{?scl_prefix}plexus-utils
+BuildRequires:	%{?scl_prefix}plexus-interpolation
+BuildRequires:	%{?scl_prefix}plexus-containers-container-default
+BuildRequires:	%{?scl_prefix}plexus-i18n
 BuildRequires:	%{?scl_prefix_java_common}maven-local
-BuildRequires:  maven30-maven-doxia-logging-api
-BuildRequires:	maven30-maven-doxia-sitetools
-BuildRequires:	maven30-maven-resources-plugin
-BuildRequires:	maven30-maven-plugin-testing-harness
-BuildRequires:	maven30-maven-reporting-impl
-BuildRequires:	maven30-maven-shared
-BuildRequires:	maven30-plexus-containers-component-metadata
+BuildRequires:  %{?scl_prefix}maven-doxia-logging-api
+BuildRequires:	%{?scl_prefix}maven-doxia-sitetools
+BuildRequires:	%{?scl_prefix}maven-resources-plugin
+BuildRequires:	%{?scl_prefix}maven-plugin-testing-harness
+BuildRequires:	%{?scl_prefix}maven-reporting-impl
+BuildRequires:	%{?scl_prefix}maven-shared
+BuildRequires:	%{?scl_prefix}plexus-containers-component-metadata
 
 BuildArch:	noarch
 
@@ -40,7 +40,7 @@ API documentation for %{pkg_name}.
 
 %prep
 %setup -q -n %{pkg_name}-%{version}
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 # use plexus-component-metadata instead of old plugin
 %pom_remove_plugin :plexus-maven-plugin
@@ -59,14 +59,14 @@ set -e -x
 %{?scl:EOF}
 
 %build
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 # test failures due to guice/cglib
 %mvn_build -f
 %{?scl:EOF}
 
 %install
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 %mvn_install
 %{?scl:EOF}
@@ -80,6 +80,9 @@ set -e -x
 %doc LICENSE
 
 %changelog
+* Mon Jan 11 2016 Michal Srb <msrb@redhat.com> - 1.4-14.12
+- maven33 rebuild #2
+
 * Sat Jan 09 2016 Michal Srb <msrb@redhat.com> - 1.4-14.11
 - maven33 rebuild
 
