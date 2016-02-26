@@ -4,7 +4,7 @@
 
 Name:		%{?scl_prefix}%{pkg_name}
 Version:	1.4
-Release:	14.12%{?dist}
+Release:	14.13%{?dist}
 Summary:	Maven Doxia Integration Tools
 
 License:	ASL 2.0
@@ -17,7 +17,7 @@ BuildRequires:	%{?scl_prefix}plexus-utils
 BuildRequires:	%{?scl_prefix}plexus-interpolation
 BuildRequires:	%{?scl_prefix}plexus-containers-container-default
 BuildRequires:	%{?scl_prefix}plexus-i18n
-BuildRequires:	%{?scl_prefix_java_common}maven-local
+BuildRequires:	%{?scl_prefix}maven-local
 BuildRequires:  %{?scl_prefix}maven-doxia-logging-api
 BuildRequires:	%{?scl_prefix}maven-doxia-sitetools
 BuildRequires:	%{?scl_prefix}maven-resources-plugin
@@ -80,6 +80,9 @@ set -e -x
 %doc LICENSE
 
 %changelog
+* Mon Feb 08 2016 Michal Srb <msrb@redhat.com> - 1.4-14.13
+- Fix BR on maven-local & co.
+
 * Mon Jan 11 2016 Michal Srb <msrb@redhat.com> - 1.4-14.12
 - maven33 rebuild #2
 
